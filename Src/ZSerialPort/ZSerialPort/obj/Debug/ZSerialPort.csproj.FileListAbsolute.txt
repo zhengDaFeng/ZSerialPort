@@ -9,4 +9,3 @@ C:\Users\zdfffg\Documents\GitHub\ZSerialPort\Src\ZSerialPort\ZSerialPort\bin\Deb
 C:\Users\zdfffg\Documents\GitHub\ZSerialPort\Src\ZSerialPort\ZSerialPort\obj\Debug\ZSerialPort.csproj.CoreCompileInputs.cache
 C:\Users\zdfffg\Documents\GitHub\ZSerialPort\Src\ZSerialPort\ZSerialPort\obj\Debug\ZSerialPort.dll
 C:\Users\zdfffg\Documents\GitHub\ZSerialPort\Src\ZSerialPort\ZSerialPort\obj\Debug\ZSerialPort.pdb
-C:\Users\zdfffg\Documents\GitHub\ZSerialPort\Src\ZSerialPort\ZSerialPort\obj\Debug\ZSerialPort.csprojAssemblyReference.cache
