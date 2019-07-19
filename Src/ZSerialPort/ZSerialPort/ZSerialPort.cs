@@ -22,7 +22,9 @@ namespace ZSerialPort
         public event ZSerialPortEventHandler ZSerialPortCloseEvent = null;
 
         SerialPort _serialPort;
-        
+
+        Object _dataReceivedLock = new Object();
+
         public ZSerialPort(ZSerialPortParams @params)
         {
             _serialPort = new SerialPort(@params.PortName, @params.BaudRate, @params.Parity, @params.DataBits, @params.StopBits);
@@ -76,11 +78,20 @@ namespace ZSerialPort
             if (e.EventType == SerialData.Eof)
                 return;
 
-            Int32 len = _serialPort.BytesToRead;
-            Byte[] data = new Byte[len];
-            Int32 read = _serialPort.Read(data, 0, len);
-            if (read > 0)
+            //Thread Safety
+            lock (_dataReceivedLock)
             {
+                Int32 len = _serialPort.BytesToRead;
+                Byte[] data = new Byte[len];
+                try
+                {
+                    _serialPort.Read(data, 0, len);
+                }
+                catch (Exception)
+                {
+                    //catch read exception
+                    throw;
+                }
                 ZSerialPortEventArgs args = new ZSerialPortEventArgs();
                 args.receivedBytes = data;
                 if (ZSerialPortReceiveEvent != null)
