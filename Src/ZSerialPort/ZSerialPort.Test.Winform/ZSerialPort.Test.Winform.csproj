@@ -32,7 +32,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>2.ico</ApplicationIcon>
+    <ApplicationIcon>
+    </ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ovalshapeLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -91,9 +92,6 @@
       <Project>{b7d6d82c-6785-4a9b-bf86-6546f5e8f6ae}</Project>
       <Name>ZSerialPort</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="2.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
