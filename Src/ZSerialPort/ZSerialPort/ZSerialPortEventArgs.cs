@@ -17,7 +17,7 @@ namespace ZSerialPort
     /// </summary>
     public class ZSerialPortEventArgs : EventArgs
     {
-        public bool isOpend = false;
-        public Byte[] receivedBytes = null;
+        public bool IsOpend = false;
+        public Byte[] ReceivedBytes = null;
     }
 }

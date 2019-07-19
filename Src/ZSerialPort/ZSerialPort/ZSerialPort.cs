@@ -25,11 +25,11 @@ namespace ZSerialPort
 
         Object _dataReceivedLock = new Object();
 
-        public ZSerialPort(ZSerialPortParams @params)
+        public ZSerialPort()
         {
-            _serialPort = new SerialPort(@params.PortName, @params.BaudRate, @params.Parity, @params.DataBits, @params.StopBits);
+            _serialPort = new SerialPort();
         }
-        
+
         /// <summary>
         /// 关闭端口连接，将 System.IO.Ports.SerialPort.IsOpen 属性设置为 false，并释放内部 System.IO.Stream 对象
         /// </summary>
@@ -37,13 +37,20 @@ namespace ZSerialPort
         {
             if (_serialPort.IsOpen)
             {
-                _serialPort.Close();
                 _serialPort.DataReceived -= SerialPort_DataReceived;
+                try
+                {
+                    _serialPort.Close();
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
 
                 if (ZSerialPortCloseEvent != null)
                 {
                     ZSerialPortEventArgs args = new ZSerialPortEventArgs();
-                    args.isOpend = false;
+                    args.IsOpend = false;
                     ZSerialPortCloseEvent.Invoke(this, args);
                 }
             }
@@ -52,17 +59,29 @@ namespace ZSerialPort
         /// <summary>
         /// 打开一个新的串行端口连接。
         /// </summary>
-        public void Open()
+        public void Open(ZSerialPortParams @params)
         {
             if (!_serialPort.IsOpen)
             {
-                _serialPort.Open();
+                _serialPort.PortName = @params.PortName;
+                _serialPort.BaudRate = @params.BaudRate;
+                _serialPort.Parity = @params.Parity;
+                _serialPort.DataBits = @params.DataBits;
+                _serialPort.StopBits = @params.StopBits;
                 _serialPort.DataReceived += SerialPort_DataReceived;
+                try
+                {
+                    _serialPort.Open();
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
                 
                 if (ZSerialPortOpenEvent != null)
                 {
                     ZSerialPortEventArgs args = new ZSerialPortEventArgs();
-                    args.isOpend = true;
+                    args.IsOpend = true;
                     ZSerialPortOpenEvent.Invoke(this, args);
                 }
             }
@@ -89,13 +108,12 @@ namespace ZSerialPort
                 }
                 catch (Exception)
                 {
-                    //catch read exception
                     throw;
                 }
-                ZSerialPortEventArgs args = new ZSerialPortEventArgs();
-                args.receivedBytes = data;
                 if (ZSerialPortReceiveEvent != null)
                 {
+                    ZSerialPortEventArgs args = new ZSerialPortEventArgs();
+                    args.ReceivedBytes = data;
                     ZSerialPortReceiveEvent.Invoke(this, args);
                 }
             }
@@ -150,34 +168,10 @@ namespace ZSerialPort
         }
 
         /// <summary>
-        /// 将指定的字符串和 System.IO.Ports.SerialPort.NewLine 值写入输出缓冲区。
-        /// </summary>
-        /// <param name="data">写入输出缓冲区的字符串。</param>
-        public void WriteLine(string data)
-        {
-            if (_serialPort.IsOpen)
-            {
-                _serialPort.WriteLine(data);
-            }
-        }
-
-        /// <summary>
-        /// 一直读取到输入缓冲区中的 System.IO.Ports.SerialPort.NewLine 值。
-        /// </summary>
-        /// <param name="data">输入缓冲区中直到首次出现 System.IO.Ports.SerialPort.NewLine 值的内容。</param>
-        public void ReadLine(ref string data)
-        {
-            if (_serialPort.IsOpen)
-            {
-                data = _serialPort.ReadLine();
-            }
-        }
-
-        /// <summary>
         /// 获取当前计算机的串行端口名称数组。
         /// </summary>
         /// <returns>当前计算机的串行端口名称数组。</returns>
-        public static string[] GetPortNames()
+        public string[] GetPortNames()
         {
             return SerialPort.GetPortNames();
         }

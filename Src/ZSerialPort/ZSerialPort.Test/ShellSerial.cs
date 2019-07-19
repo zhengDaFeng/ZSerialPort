@@ -10,13 +10,13 @@ namespace ZSerialPort.Test
         static void Main(string[] args)
         {
             ZSerialPortParams zSerialPortParams = new ZSerialPortParams("com2", 9600);
-            ZSerialPort zSerialPort = new ZSerialPort(zSerialPortParams);
+            ZSerialPort zSerialPort = new ZSerialPort();
             zSerialPort.ZSerialPortReceiveEvent += (sender, e) =>
             {
-                string result = System.Text.Encoding.Default.GetString(e.receivedBytes);
+                string result = System.Text.Encoding.Default.GetString(e.ReceivedBytes);
                 Console.WriteLine("Received data: " + result);
             };
-            zSerialPort.Open();
+            zSerialPort.Open(zSerialPortParams);
             while(true)
             {
                 string data = Console.ReadLine();

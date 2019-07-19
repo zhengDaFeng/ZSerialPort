@@ -7,3 +7,12 @@ C:\Users\Admin\source\repos\ZSerialPort\ZSerialPort.Test\obj\Debug\ZSerialPort.T
 C:\Users\Admin\source\repos\ZSerialPort\ZSerialPort.Test\obj\Debug\ZSerialPort.Test.csproj.CopyComplete
 C:\Users\Admin\source\repos\ZSerialPort\ZSerialPort.Test\obj\Debug\ZSerialPort.Test.exe
 C:\Users\Admin\source\repos\ZSerialPort\ZSerialPort.Test\obj\Debug\ZSerialPort.Test.pdb
+C:\Users\zdfffg\Documents\GitHub\ZSerialPort\Src\ZSerialPort\ZSerialPort.Test\bin\Debug\ZSerialPort.Test.exe
+C:\Users\zdfffg\Documents\GitHub\ZSerialPort\Src\ZSerialPort\ZSerialPort.Test\bin\Debug\ZSerialPort.Test.pdb
+C:\Users\zdfffg\Documents\GitHub\ZSerialPort\Src\ZSerialPort\ZSerialPort.Test\bin\Debug\ZSerialPort.dll
+C:\Users\zdfffg\Documents\GitHub\ZSerialPort\Src\ZSerialPort\ZSerialPort.Test\bin\Debug\ZSerialPort.pdb
+C:\Users\zdfffg\Documents\GitHub\ZSerialPort\Src\ZSerialPort\ZSerialPort.Test\obj\Debug\ZSerialPort.Test.csprojAssemblyReference.cache
+C:\Users\zdfffg\Documents\GitHub\ZSerialPort\Src\ZSerialPort\ZSerialPort.Test\obj\Debug\ZSerialPort.Test.csproj.CoreCompileInputs.cache
+C:\Users\zdfffg\Documents\GitHub\ZSerialPort\Src\ZSerialPort\ZSerialPort.Test\obj\Debug\ZSerialPort.Test.csproj.CopyComplete
+C:\Users\zdfffg\Documents\GitHub\ZSerialPort\Src\ZSerialPort\ZSerialPort.Test\obj\Debug\ZSerialPort.Test.exe
+C:\Users\zdfffg\Documents\GitHub\ZSerialPort\Src\ZSerialPort\ZSerialPort.Test\obj\Debug\ZSerialPort.Test.pdb
