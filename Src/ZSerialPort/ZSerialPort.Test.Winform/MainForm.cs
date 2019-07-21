@@ -38,64 +38,29 @@ namespace ZSerialPort.Test.Winform
 
         public void CloseComEvent(object sender, ZSerialPortEventArgs e)
         {
-            if (!e.IsOpend)
-            {
-                BtnOpen.Text = "Open";
-            }
-
-            TslComStatus.Text = CmbPortName.Text + ": " + "Closed";
-        }
-
-        public void ComReceiveDataEvent(object sender, ZSerialPortEventArgs e)
-        {
-            TxtReceivedData.AppendText(System.Text.Encoding.Default.GetString(e.ReceivedBytes));
-            var rxCountArr = TslRxCount.Text.Split(':');
-            int.TryParse(rxCountArr[1].Trim(), out int count);
-            count += 1;
-            TslRxCount.Text = "Rx: " + count;
+            UpdateUI_Open_Close(e.IsOpend);
         }
 
         public void OpenComEvent(object sender, ZSerialPortEventArgs e)
         {
-            if (e.IsOpend)
-            {
-                BtnOpen.Text = "Close";
-            }
+            UpdateUI_Open_Close(e.IsOpend);
+        }
 
-            TslComStatus.Text = CmbPortName.Text + ": " + "Opened";
+        public void ComReceiveDataEvent(object sender, ZSerialPortEventArgs e)
+        {
+            var data = System.Text.Encoding.Default.GetString(e.ReceivedBytes);
+
+            Action<string> actionDelegate = (x) =>
+            {
+                UpdateUI_DataReceived(x);
+            };
+
+            this.TxtReceivedData.BeginInvoke(actionDelegate, data);
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            // 初始化
-            CmbPortName.Items.AddRange(_controller.GetPortNames());
-            if (CmbPortName.Items != null && CmbPortName.Items.Count > 0)
-            {
-                CmbPortName.SelectedIndex = 0;
-            }
-            if (CmbBaudRate.Items != null && CmbBaudRate.Items.Count > 0)
-            {
-                CmbBaudRate.SelectedIndex = 0;
-            }
-            if (CmbDataBits.Items != null && CmbDataBits.Items.Count > 0)
-            {
-                CmbDataBits.SelectedIndex = 0;
-            }
-            if (CmbStopBits.Items != null && CmbStopBits.Items.Count > 0)
-            {
-                CmbStopBits.SelectedIndex = 0;
-            }
-            if (CmbParity.Items != null && CmbParity.Items.Count > 0)
-            {
-                CmbParity.SelectedIndex = 0;
-            }
-
-            RdoString.Checked = true;
-
-            TxtAutoSendSpanTime.Text = "100";
-
-            TslComStatus.Text = "Unknow";
-            TslRxCount.Text = "Unknow";
+            UpdateUI_Init();
         }
 
         private void BtnOpen_Click(object sender, EventArgs e)
@@ -110,9 +75,15 @@ namespace ZSerialPort.Test.Winform
             }
         }
 
+        private void BtnClearReceived_Click(object sender, EventArgs e)
+        {
+            TxtReceivedData.ResetText();
+        }
+
         private void BtnSend_Click(object sender, EventArgs e)
         {
             _controller.Send(TxtSendData.Text);
+            UpdateUI_SendData();
         }
 
         private void ChkAutoSend_CheckedChanged(object sender, EventArgs e)
@@ -149,7 +120,106 @@ namespace ZSerialPort.Test.Winform
 
         private void DgvCollectionContent_DoubleClick(object sender, EventArgs e)
         {
-            TxtSendData.Text = DgvCollectionContent.SelectedRows[0].Cells[0].Value.ToString();
+            if (DgvCollectionContent.SelectedRows[0].Cells[0].Value != null)
+            {
+                TxtSendData.Text = DgvCollectionContent.SelectedRows[0].Cells[0].Value.ToString();
+            }
+        }
+
+        private void DgvCollectionContent_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            
+        }
+
+        private void UpdateUI_Init()
+        {
+            UpdateUI_PortParamsInit();
+            UpdateUI_Open_Close(false);
+
+            RdoString.Checked = true;
+
+            TxtAutoSendSpanTime.Text = "100";
+        }
+
+        private void UpdateUI_PortParamsInit()
+        {
+            UpdateUI_Ports();
+
+            var baudRates = new string[] { "9600", "19200", "115200" };
+            var dataBits = new string[] { "7", "8" };
+            var stopBits = new string[] { "One", "Two" };
+            var parities = new string[] { "None", "Odd", "Even", "Mark", "Space" };
+
+            CmbBaudRate.Items.AddRange(baudRates);
+            CmbDataBits.Items.Clear();
+            CmbDataBits.Items.AddRange(dataBits);
+            CmbStopBits.Items.Clear();
+            CmbStopBits.Items.AddRange(stopBits);
+            CmbParity.Items.Clear();
+            CmbParity.Items.AddRange(parities);
+
+            CmbBaudRate.SelectedIndex = 0;
+            CmbDataBits.SelectedIndex = 1;
+            CmbStopBits.SelectedIndex = 0;
+            CmbParity.SelectedIndex = 0;
+        }
+
+        private void UpdateUI_Ports()
+        {
+            var ports = _controller.GetPortNames();
+            CmbPortName.Items.Clear();
+            CmbPortName.Items.AddRange(ports);
+            if (CmbPortName.Items.Count > 0)
+            {
+                CmbPortName.SelectedIndex = 0;
+            }
+        }
+
+        private void UpdateUI_Open_Close(bool isOpened)
+        {
+            // 修复 GDI+ 刷新问题
+            Bitmap bmp = new Bitmap(PtbFlag.Width, PtbFlag.Height);
+            PtbFlag.BackgroundImage = bmp;
+
+            Graphics g;
+            Brush brush;
+
+            g = Graphics.FromImage(bmp);
+
+            if (isOpened)
+            {
+                BtnOpen.Text = "Close";
+
+                brush = new SolidBrush(Color.Green);
+            }
+            else
+            {
+                BtnOpen.Text = "Open";
+
+                brush = new SolidBrush(Color.Red);
+            }
+
+            g.FillEllipse(brush, 3, 3, PtbFlag.Width - 6, PtbFlag.Height - 6);
+
+            CmbPortName.Enabled = !isOpened;
+            CmbBaudRate.Enabled = !isOpened;
+            CmbDataBits.Enabled = !isOpened;
+            CmbStopBits.Enabled = !isOpened;
+            CmbParity.Enabled = !isOpened;
+
+            ChkAutoSend.Enabled = isOpened;
+            BtnSend.Enabled = isOpened;
+        }
+
+        private void UpdateUI_DataReceived(string data)
+        {
+            GrpReceived.Text = "Received (" + DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss.fff") + ")";
+            this.TxtReceivedData.AppendText(data);
+        }
+
+        private void UpdateUI_SendData()
+        {
+            GrpSend.Text = "Send (" + DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss.fff") + ")";
         }
     }
 }

@@ -41,6 +41,32 @@ namespace ZSerialPort
             _stopBits = stopBits;
         }
 
+        public ZSerialPortParams(String portName, String baudRate)
+            : this(portName, baudRate, "8", "One", "None")
+        { }
+
+        public ZSerialPortParams(String portName, String baudRate,
+            String dataBits, String stopBits, String parity)
+        {
+            _portName = portName;
+            if (!int.TryParse(baudRate, out _baudRate))
+            {
+                throw new Exception("Param baudRate cannot parse to int!");
+            }
+            if (!int.TryParse(dataBits, out _dataBits))
+            {
+                throw new Exception("Param dataBits cannot parse to int!");
+            }
+            if (!Enum.TryParse<StopBits>(stopBits, out _stopBits))
+            {
+                throw new Exception("Param stopBits cannot parse to enum!");
+            }
+            if (!Enum.TryParse<Parity>(parity, out _parity))
+            {
+                throw new Exception("Param parity cannot parse to enum!");
+            }
+        }
+
         /// <summary>
         /// Gets the serial port name.
         /// </summary>

@@ -35,11 +35,7 @@ namespace ZSerialPort.Test.Winform
 
         public void Open(string portName, string baudRate, string dataBits, string stopBits, string parity)
         {
-            int.TryParse(baudRate, out int br);
-            int.TryParse(dataBits, out int db);
-            System.IO.Ports.StopBits sb = (System.IO.Ports.StopBits)Enum.Parse(typeof(System.IO.Ports.StopBits), stopBits);
-            System.IO.Ports.Parity p = (System.IO.Ports.Parity)Enum.Parse(typeof(System.IO.Ports.Parity), parity);
-            ZSerialPortParams @params = new ZSerialPortParams(portName, br, p, db, sb);
+            ZSerialPortParams @params = new ZSerialPortParams(portName, baudRate, dataBits, stopBits, parity);
             _model.Open(@params);
         }
 
@@ -50,7 +46,7 @@ namespace ZSerialPort.Test.Winform
 
         public bool Send(string data)
         {
-            return _model.Write(data);
+            return _model.Write(Encoding.Default.GetBytes(data));
         }
 
         public void AutoSend(bool enabled, string data, int interval)
