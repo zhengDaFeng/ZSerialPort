@@ -41,7 +41,7 @@ namespace ZSerialPort.Test.Winform
 
         public string[] GetPortNames()
         {
-            return _model.GetPortNames();
+            return ZSerialPort.GetPortNames();
         }
 
         public bool Send(string data)

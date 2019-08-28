@@ -171,7 +171,7 @@ namespace ZSerialPort
         /// 获取当前计算机的串行端口名称数组。
         /// </summary>
         /// <returns>当前计算机的串行端口名称数组。</returns>
-        public string[] GetPortNames()
+        public static string[] GetPortNames()
         {
             return SerialPort.GetPortNames();
         }

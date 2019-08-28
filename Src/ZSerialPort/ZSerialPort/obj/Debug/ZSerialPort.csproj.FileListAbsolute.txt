@@ -1,0 +1,6 @@
+E:\Github\ZSerialPort\Src\ZSerialPort\ZSerialPort\bin\Debug\ZSerialPort.dll
+E:\Github\ZSerialPort\Src\ZSerialPort\ZSerialPort\bin\Debug\ZSerialPort.pdb
+E:\Github\ZSerialPort\Src\ZSerialPort\ZSerialPort\obj\Debug\ZSerialPort.csprojAssemblyReference.cache
+E:\Github\ZSerialPort\Src\ZSerialPort\ZSerialPort\obj\Debug\ZSerialPort.csproj.CoreCompileInputs.cache
+E:\Github\ZSerialPort\Src\ZSerialPort\ZSerialPort\obj\Debug\ZSerialPort.dll
+E:\Github\ZSerialPort\Src\ZSerialPort\ZSerialPort\obj\Debug\ZSerialPort.pdb
