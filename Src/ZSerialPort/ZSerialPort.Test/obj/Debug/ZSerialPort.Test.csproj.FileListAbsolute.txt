@@ -1,9 +1,0 @@
-E:\Github\ZSerialPort\Src\ZSerialPort\ZSerialPort.Test\bin\Debug\ZSerialPort.Test.exe
-E:\Github\ZSerialPort\Src\ZSerialPort\ZSerialPort.Test\bin\Debug\ZSerialPort.Test.pdb
-E:\Github\ZSerialPort\Src\ZSerialPort\ZSerialPort.Test\bin\Debug\ZSerialPort.dll
-E:\Github\ZSerialPort\Src\ZSerialPort\ZSerialPort.Test\bin\Debug\ZSerialPort.pdb
-E:\Github\ZSerialPort\Src\ZSerialPort\ZSerialPort.Test\obj\Debug\ZSerialPort.Test.csprojAssemblyReference.cache
-E:\Github\ZSerialPort\Src\ZSerialPort\ZSerialPort.Test\obj\Debug\ZSerialPort.Test.csproj.CoreCompileInputs.cache
-E:\Github\ZSerialPort\Src\ZSerialPort\ZSerialPort.Test\obj\Debug\ZSerialPort.Test.csproj.CopyComplete
-E:\Github\ZSerialPort\Src\ZSerialPort\ZSerialPort.Test\obj\Debug\ZSerialPort.Test.exe
-E:\Github\ZSerialPort\Src\ZSerialPort\ZSerialPort.Test\obj\Debug\ZSerialPort.Test.pdb

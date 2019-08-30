@@ -168,6 +168,45 @@ namespace ZSerialPort
         }
 
         /// <summary>
+        /// 发送指定字符串，并在超时时间内一直读取直到缓冲区出现指定的字符串
+        /// </summary>
+        /// <param name="data">发送的字符串</param>
+        /// <param name="key">读取结束标志</param>
+        /// <param name="timeout">超时时间</param>
+        /// <returns>读取的完整字符串</returns>
+        public string WriteReadTo(string data, string key, int timeout)
+        {
+            var result = "";
+            byte[] buffer  = new byte[64];
+
+            if (!_serialPort.IsOpen)
+            {
+                return "Port is closed!";
+            }
+
+            try
+            {
+                _serialPort.DataReceived -= SerialPort_DataReceived;
+
+                // 设置读超时
+                _serialPort.ReadTimeout = timeout;
+                // 写
+                _serialPort.Write(data);
+                // 读
+                result = _serialPort.ReadTo(key);
+                result += key;
+
+                _serialPort.DataReceived += SerialPort_DataReceived;
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+        }
+
+        /// <summary>
         /// 获取当前计算机的串行端口名称数组。
         /// </summary>
         /// <returns>当前计算机的串行端口名称数组。</returns>
