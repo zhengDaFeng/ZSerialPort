@@ -207,6 +207,45 @@ namespace ZSerialPort
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="data"></param>
+        /// <param name="key"></param>
+        /// <param name="timeout"></param>
+        /// <returns></returns>
+        public byte[] WriteReadTo(byte[] data, byte[] key, int timeout)
+        {
+            var result = "";
+            byte[] buffer = new byte[64];
+
+            if (!_serialPort.IsOpen)
+            {
+                return Encoding.Default.GetBytes("Port is closed!");
+            }
+
+            try
+            {
+                _serialPort.DataReceived -= SerialPort_DataReceived;
+
+                // 设置读超时
+                _serialPort.ReadTimeout = timeout;
+                // 写
+                _serialPort.Write(data, 0, data.Length);
+                // 读
+                result = _serialPort.ReadTo(Encoding.Default.GetString(key));
+                result += key;
+
+                _serialPort.DataReceived += SerialPort_DataReceived;
+
+                return Encoding.Default.GetBytes(result);
+            }
+            catch (Exception ex)
+            {
+                return Encoding.Default.GetBytes(ex.Message);
+            }
+        }
+
+        /// <summary>
         /// 获取当前计算机的串行端口名称数组。
         /// </summary>
         /// <returns>当前计算机的串行端口名称数组。</returns>

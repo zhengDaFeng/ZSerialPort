@@ -1,0 +1,13 @@
+E:\Github\ZSerialPort\Src\ZSerialPort\ZSerialPort.Test.Winform\bin\Debug\ZSerialPort.Test.Winform.exe.config
+E:\Github\ZSerialPort\Src\ZSerialPort\ZSerialPort.Test.Winform\bin\Debug\ZSerialPort.Test.Winform.exe
+E:\Github\ZSerialPort\Src\ZSerialPort\ZSerialPort.Test.Winform\bin\Debug\ZSerialPort.Test.Winform.pdb
+E:\Github\ZSerialPort\Src\ZSerialPort\ZSerialPort.Test.Winform\bin\Debug\ZSerialPort.dll
+E:\Github\ZSerialPort\Src\ZSerialPort\ZSerialPort.Test.Winform\bin\Debug\ZSerialPort.pdb
+E:\Github\ZSerialPort\Src\ZSerialPort\ZSerialPort.Test.Winform\obj\Debug\ZSerialPort.Test.Winform.csprojAssemblyReference.cache
+E:\Github\ZSerialPort\Src\ZSerialPort\ZSerialPort.Test.Winform\obj\Debug\ZSerialPort.Test.Winform.MainForm.resources
+E:\Github\ZSerialPort\Src\ZSerialPort\ZSerialPort.Test.Winform\obj\Debug\ZSerialPort.Test.Winform.Properties.Resources.resources
+E:\Github\ZSerialPort\Src\ZSerialPort\ZSerialPort.Test.Winform\obj\Debug\ZSerialPort.Test.Winform.csproj.GenerateResource.cache
+E:\Github\ZSerialPort\Src\ZSerialPort\ZSerialPort.Test.Winform\obj\Debug\ZSerialPort.Test.Winform.csproj.CoreCompileInputs.cache
+E:\Github\ZSerialPort\Src\ZSerialPort\ZSerialPort.Test.Winform\obj\Debug\ZSerialPort.Test.Winform.csproj.CopyComplete
+E:\Github\ZSerialPort\Src\ZSerialPort\ZSerialPort.Test.Winform\obj\Debug\ZSerialPort.Test.Winform.exe
+E:\Github\ZSerialPort\Src\ZSerialPort\ZSerialPort.Test.Winform\obj\Debug\ZSerialPort.Test.Winform.pdb
