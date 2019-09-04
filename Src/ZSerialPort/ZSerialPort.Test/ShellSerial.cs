@@ -40,7 +40,7 @@ namespace ZSerialPort.Test
 
             System.Threading.Thread.Sleep(1000);
 
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 100; i++)
             {
                 Console.Write(DateTime.Now.ToString("HH:mm:ss.fff") + " COM1 TX: F1" + System.Environment.NewLine);
                 var result = zSerialPort1.WriteReadTo("F1\r\n", "\r\n", 1000);
